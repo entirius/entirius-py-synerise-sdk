@@ -1,0 +1,1 @@
+from synerise_sdk.synerise_sdk import SyneriseClient
