@@ -19,10 +19,12 @@ Synerise CDP REST API SDK — distribution `entirius-py-synerise-sdk`, import `s
 - Git flow: `master` (production) + `develop` (integration); changes land via PR; semver tag on `master`.
 - Never rename the import package `synerise_sdk` — it is a public API contract.
 - Default: do not commit — git is the user's call.
+- No AI attribution in commits or PR descriptions.
 
 ## Architecture
 
-- `synerise_sdk.py` — `SyneriseClient`: workspace token auth, then customer profile create over the Synerise REST API.
-- `dto/profile.py` — `Profile` request DTO.
-- `validators/` — response shape validation.
-- Integration test hits the live Synerise API — skipped unless `SYNERISE_API_KEY` is set.
+- `src/synerise_sdk/synerise_sdk.py`: `SyneriseClient` authenticates the workspace, then creates customer profiles
+  and sends custom events over the Synerise REST API.
+- `dto/profile.py`: `Profile` and `ProfileEvent` request DTOs.
+- `validators/`: response shape validation.
+- The integration test hits the live Synerise API and is skipped unless `SYNERISE_API_KEY` is set.
